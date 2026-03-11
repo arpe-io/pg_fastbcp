@@ -27,7 +27,7 @@ A PostgreSQL extension to run the [FastBCP](https://fastbcp.arpe.io/) tool from 
 This extension requires the **FastBCP tool** to be installed separately.
 
 Download FastBCP and get a free trial license here:  
-👉 [https://www.arpe.io/get-your-fastbcp-trial](https://www.arpe.io/get-your-fastbcp-trial)
+👉 [FastBCP Trial](https://arpe.io/get-trial?product=FastBCP)
 
 Once downloaded, extract the archive and provide the folder path using the `fastbcp_path` parameter when calling the `xp_RunFastBcp_secure` SQL function.
 
