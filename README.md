@@ -1,6 +1,6 @@
 
 # pg_fastbcp
-A PostgreSQL extension to run the [FastBCP](https://www.arpe.io/fastbcp/?v=82a9e4d26595) tool from an SQL function, enabling fast extract from databases.
+A PostgreSQL extension to run the [FastBCP](https://fastbcp.arpe.io/) tool from an SQL function, enabling fast extract from databases.
 
 ![Tuto](assets/pg_fastbcp.gif)
 
@@ -27,7 +27,7 @@ A PostgreSQL extension to run the [FastBCP](https://www.arpe.io/fastbcp/?v=82a9e
 This extension requires the **FastBCP tool** to be installed separately.
 
 Download FastBCP and get a free trial license here:  
-👉 [FastBCP Trial](https://arpe.io/get-trial?product=FastBCP)
+👉 [https://www.arpe.io/get-your-fastbcp-trial](https://www.arpe.io/get-your-fastbcp-trial)
 
 Once downloaded, extract the archive and provide the folder path using the `fastbcp_path` parameter when calling the `xp_RunFastBcp_secure` SQL function.
 
@@ -214,7 +214,7 @@ SELECT pg_fastbcp_encrypt('MySecurePassword');
 
 This is the main function to execute the FastBCP tool.
 It takes various parameters to configure the data extraction operation, you can find all the documentation of FastBCP here : 
-👉 [FastBCP Documentation](https://github.com/aetperf/FastBCP-Documentation)
+👉 [FastBCP Documentation](https://fastbcp.arpe.io/docs/latest/)
 
 Password argument (`password`) will be automatically decrypted 
 
