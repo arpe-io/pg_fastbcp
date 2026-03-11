@@ -214,7 +214,7 @@ SELECT pg_fastbcp_encrypt('MySecurePassword');
 
 This is the main function to execute the FastBCP tool.
 It takes various parameters to configure the data extraction operation, you can find all the documentation of FastBCP here : 
-👉 [FastBCP Documentation](https://fastbcp.arpe.io/docs/latest/)
+👉 [FastBCP Documentation](https://fastbcp-docs.arpe.io/latest/)
 
 Password argument (`password`) will be automatically decrypted 
 
