@@ -27,7 +27,7 @@ A PostgreSQL extension to run the [FastBCP](https://www.arpe.io/fastbcp/?v=82a9e
 This extension requires the **FastBCP tool** to be installed separately.
 
 Download FastBCP and get a free trial license here:  
-👉 [https://www.arpe.io/get-your-fastbcp-trial](https://www.arpe.io/get-your-fastbcp-trial)
+👉 [FastBCP Trial](https://arpe.io/get-trial?product=FastBCP)
 
 Once downloaded, extract the archive and provide the folder path using the `fastbcp_path` parameter when calling the `xp_RunFastBcp_secure` SQL function.
 
@@ -69,11 +69,13 @@ The **pg_fastbcp** extension has been tested and validated on the following envi
 ### Windows
 - PostgreSQL **16**  
 - PostgreSQL **17**
+- PostgreSQL **18**
 
 ### Linux (Debian/Ubuntu 22.04 LTS)
 - PostgreSQL **15**  
 - PostgreSQL **16**  
 - PostgreSQL **17**
+- PostgreSQL **18**
 
 ⚠️ Other distributions or PostgreSQL versions may work but have not been officially tested.  
 
@@ -221,7 +223,7 @@ Password argument (`password`) will be automatically decrypted
 ```sql
 xp_RunFastBcp_secure(
     connectiontype text DEFAULT NULL,
-    connectionstring text DEFAULT NULL,
+    sourceconnectstring text DEFAULT NULL,
     dsn text DEFAULT NULL,
     provider text DEFAULT NULL,
     server text DEFAULT NULL,
@@ -229,27 +231,33 @@ xp_RunFastBcp_secure(
     password text DEFAULT NULL,
     trusted boolean DEFAULT NULL,
     database_name text DEFAULT NULL,
-    decimalseparator text DEFAULT NULL,
+    applicationintent text DEFAULT NULL,
     fileinput text DEFAULT NULL,
     query text DEFAULT NULL,
     sourceschema text DEFAULT NULL,
     sourcetable text DEFAULT NULL,
     fileoutput text DEFAULT NULL,
     directory text DEFAULT NULL,
-    delimiter text DEFAULT NULL,
-    quotes boolean DEFAULT NULL,
-    dateformat text DEFAULT NULL,
-    encoding text DEFAULT NULL,
-    paralleldegree integer DEFAULT NULL,
-    method text DEFAULT NULL,
-    distributekeycolumn text DEFAULT NULL,
-    merge boolean DEFAULT NULL,
     timestamped boolean DEFAULT NULL,
-    noheader boolean DEFAULT NULL,
+    encoding text DEFAULT NULL,
+    delimiter text DEFAULT NULL,
+    usequotes boolean DEFAULT NULL,
+    dateformat text DEFAULT NULL,
+    decimalseparator text DEFAULT NULL,
     boolformat text DEFAULT NULL,
+    noheader boolean DEFAULT NULL,
+    parquetcompression text DEFAULT NULL,
+    cloudprofile text DEFAULT NULL,
+    parallelmethod text DEFAULT NULL,
+    paralleldegree integer DEFAULT NULL,
+    distributekeycolumn text DEFAULT NULL,
+    datadrivenquery text DEFAULT NULL,
+    merge boolean DEFAULT NULL,
+    loglevel text DEFAULT NULL,
     runid text DEFAULT NULL,
     settingsfile text DEFAULT NULL,
-    cloudprofile text DEFAULT NULL,
+    config text DEFAULT NULL,
+    nobanner boolean DEFAULT NULL,
     license text DEFAULT NULL,
     fastbcp_path text DEFAULT NULL
 ) RETURNS TABLE
@@ -273,7 +281,7 @@ meQxt6oCAYORpnXb8PBsr6E=',
     directory := 'D:\tmp',
     fileoutput := 'orders_1995.parquet',
     encoding := 'UTF-8',
-    method := 'RangeId',
+    parallelmethod := 'RangeId',
     distributekeycolumn := 'o_orderkey',
     paralleldegree := 7,
     merge := 'true',

@@ -55,7 +55,7 @@ jobs:
         files: pg_fastbcp-windows-pg${{ matrix.pg_version }}.zip
         prerelease: false
         draft: false
-        overwrite: true
+        overwrite_files: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -94,6 +94,6 @@ jobs:
           files: pg_fastbcp-linux-pg${{ matrix.pg_version }}.zip
           prerelease: false
           draft: false
-          overwrite: true
+          overwrite_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

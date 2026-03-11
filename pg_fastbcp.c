@@ -127,21 +127,22 @@ xp_RunFastBcp_secure(PG_FUNCTION_ARGS)
     char binary_path[1024];
     
     // NOUVEAU: Mettre à jour les noms des arguments et leur nombre
-    // Le nombre de paramètres est 31 (29 + password + path)
+    // Le nombre de paramètres est 38 (36 + license + path)
     const char *arg_names[] = {
-    "--connectiontype", "--connectionstring", "--dsn", "--provider",
+    "--connectiontype", "--sourceconnectstring", "--dsn", "--provider",
     "--server", "--user", "--password", "--trusted", "--database",
-    "--decimalseparator", "--fileinput", "--query", "--sourceschema",
-    "--sourcetable", "--fileoutput", "--directory", "--delimiter",
-    "--quotes", "--dateformat", "--encoding", "--paralleldegree",
-    "--method", "--distributekeycolumn", "--merge", "--timestamped",
-    "--noheader", "--boolformat", "--runid", "--settingsfile",
-    "--cloudprofile", "--license", "__fastbcp_path"
+    "--applicationintent", "--fileinput", "--query", "--sourceschema",
+    "--sourcetable", "--fileoutput", "--directory", "--timestamped",
+    "--encoding", "--delimiter", "--usequotes", "--dateformat",
+    "--decimalseparator", "--boolformat", "--noheader", "--parquetcompression",
+    "--cloudprofile", "--parallelmethod", "--paralleldegree", "--distributekeycolumn",
+    "--datadrivenquery", "--merge", "--loglevel", "--runid",
+    "--settingsfile", "--config", "--nobanner", "--license", "__fastbcp_path"
     };
 
     // NOUVEAU: Mettre à jour les paramètres booléens et entiers
     const char *flag_params[] = {
-        "--trusted", "--timestamped", "--quotes", "--noheader"
+        "--trusted", "--timestamped", "--usequotes", "--noheader", "--nobanner"
     };
     const char *int_params[] = {
         "--paralleldegree"
@@ -172,9 +173,9 @@ xp_RunFastBcp_secure(PG_FUNCTION_ARGS)
     if (get_call_result_type(fcinfo, NULL, &tupdesc) != TYPEFUNC_COMPOSITE)
         ereport(ERROR, (errmsg("The function should return a record")));
     
-    // Le nombre de paramètres dans PG_GETARG_ pour l'index du chemin sera maintenant 31
-    if (fcinfo->nargs > 31 && !PG_ARGISNULL(31)) {
-        pg_path = text_to_cstring(PG_GETARG_TEXT_PP(31));
+    // Le nombre de paramètres dans PG_GETARG_ pour l'index du chemin sera maintenant 37
+    if (fcinfo->nargs > 37 && !PG_ARGISNULL(37)) {
+        pg_path = text_to_cstring(PG_GETARG_TEXT_PP(37));
         #ifdef _WIN32
         snprintf(binary_path, sizeof(binary_path), "%s\\%s", pg_path, BINARY_NAME);
         #else
@@ -197,8 +198,8 @@ xp_RunFastBcp_secure(PG_FUNCTION_ARGS)
     
     appendStringInfo(command, "%s", binary_path);
 
-    // Boucle pour itérer sur les arguments. Le nombre d'arguments est maintenant 31.
-    for (i = 0; i < 31; i++) {
+    // Boucle pour itérer sur les arguments. Le nombre d'arguments est maintenant 37.
+    for (i = 0; i < 37; i++) {
         if (PG_ARGISNULL(i)) continue;
 
         // Vérifie si le paramètre est un booléen de type "switch"
